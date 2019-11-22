@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewDatabase">
+
+
+    <ScrollView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="161dp">
+
+        <TextView
+            android:id="@+id/databaseentry"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="140dp"
+            android:text="database entry info"
+            android:textSize="14sp" />
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/checkdatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Database"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <Button
+        android:id="@+id/editdatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Database Entry"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+    <Button
+        android:id="@+id/dbtomain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return to Main"
+        tools:layout_editor_absoluteX="228dp"
+        tools:layout_editor_absoluteY="517dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
