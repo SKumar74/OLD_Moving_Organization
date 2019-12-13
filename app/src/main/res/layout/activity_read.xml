@@ -4,34 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".readActivity">
+    tools:context=".Read">
 
 
     <Button
         android:id="@+id/checkdb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
         android:text="Check Database"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="508dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/readtomain"
+        app:layout_constraintEnd_toStartOf="@+id/readtomain"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/rtomain"
+        android:id="@+id/readtomain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="175dp"
         android:text="return to main"
-        tools:layout_editor_absoluteX="235dp"
-        tools:layout_editor_absoluteY="508dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkdb" />
 
     <ScrollView
 
+        android:id="@+id/scrollView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="58dp">
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="58dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/reading"
+            android:id="@+id/readingTag"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="140dp"

@@ -10,42 +10,72 @@
         android:id="@+id/TagDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
         android:text="Write to Tag/Database"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="538dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/rtomain"
+        app:layout_constraintEnd_toStartOf="@+id/rtomain"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/wtomain"
+        android:id="@+id/rtomain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="146dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="145dp"
         android:text="Return to Main "
-        tools:layout_editor_absoluteX="239dp"
-        tools:layout_editor_absoluteY="538dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/TagDB"
+        app:layout_constraintTop_toTopOf="@+id/contentstatus"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/contentstatus"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:dropDownWidth="10dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="392dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        android:layout_alignParentLeft="true"
+
+
+        />
 
     <ScrollView
 
+        android:id="@+id/scrollView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="33dp">
+        android:layout_marginTop="33dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <EditText
             android:id="@+id/writing"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="140dp"
             android:text="Check"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
     </ScrollView>
+
+    <TextView
+        android:id="@+id/tagnotification"
+        android:layout_width="198dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="60dp"
+        android:text="Notification will appear here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toEndOf="@+id/TagDB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contentstatus" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

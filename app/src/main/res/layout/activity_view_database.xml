@@ -9,10 +9,13 @@
 
     <ScrollView
 
+        android:id="@+id/scrollView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="161dp">
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkdatabase">
 
         <TextView
             android:id="@+id/databaseentry"
@@ -28,24 +31,41 @@
         android:id="@+id/checkdatabase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
         android:text="Check Database"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="63dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/editdatabase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
         android:text="Edit Database Entry"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="517dp" />
+        app:layout_constraintStart_toStartOf="@+id/deletefromdb"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView4" />
+
+    <Button
+        android:id="@+id/deletefromdb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Delete Database Entry"
+        app:layout_constraintBottom_toTopOf="@+id/dbtomain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/dbtomain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="56dp"
         android:text="Return to Main"
-        tools:layout_editor_absoluteX="228dp"
-        tools:layout_editor_absoluteY="517dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/deletefromdb" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

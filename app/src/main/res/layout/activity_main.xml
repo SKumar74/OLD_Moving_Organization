@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="App Name"
@@ -18,27 +19,44 @@
         app:layout_constraintVertical_bias="0.135" />
 
     <Button
-        android:id="@+id/Read"
+        android:id="@+id/Readbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="10dp"
         android:text="Read"
-        tools:layout_editor_absoluteX="207dp"
-        tools:layout_editor_absoluteY="239dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Writebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/Write"
+        android:id="@+id/Writebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="51dp"
         android:text="Write"
-        tools:layout_editor_absoluteX="207dp"
-        tools:layout_editor_absoluteY="375dp" />
+        app:layout_constraintBottom_toTopOf="@+id/VDB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.391"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Readbutton" />
 
     <Button
         android:id="@+id/VDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="209dp"
         android:text="View Database"
-        tools:layout_editor_absoluteX="188dp"
-        tools:layout_editor_absoluteY="474dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.664"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Writebutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
