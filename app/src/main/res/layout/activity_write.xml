@@ -6,76 +6,153 @@
     android:layout_height="match_parent"
     tools:context=".Write">
 
+
+    <TextView
+        android:id="@+id/helpcontent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="33dp"
+        android:text="Enter the content of your box:"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/helplocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginBottom="145dp"
+        android:text="Enter where you want the box to go:"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/helpInstructions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/helpcontent" />
+
+
+    <TextView
+        android:id="@+id/helpInstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="309dp"
+        android:layout_marginBottom="310dp"
+        android:text="Any specific Instructions needed?: "
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+
+    <EditText
+        android:id="@+id/enterlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:text="Enter here"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@+id/helplocation"
+        app:layout_constraintTop_toTopOf="@+id/helplocation" />
+
+
+    <EditText
+        android:id="@+id/enterinstructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:text="Enter here"
+        android:textSize="12dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/helpInstructions"
+        app:layout_constraintStart_toEndOf="@+id/helpInstructions" />
+
     <Button
         android:id="@+id/TagDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="11dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="121dp"
         android:text="Write to Tag/Database"
-        app:layout_constraintBaseline_toBaselineOf="@+id/rtomain"
-        app:layout_constraintEnd_toStartOf="@+id/rtomain"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/rtomain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="146dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="145dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="9dp"
         android:text="Return to Main "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/TagDB"
-        app:layout_constraintTop_toTopOf="@+id/contentstatus"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/testdb"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/testdb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="9dp"
+        android:text="Test database write"
+        app:layout_constraintStart_toStartOf="@+id/tagnotification"
+        app:layout_constraintTop_toBottomOf="@+id/TagDB" />
 
     <Spinner
         android:id="@+id/contentstatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:dropDownWidth="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         android:layout_alignParentLeft="true"
 
 
-        />
+        android:layout_marginBottom="24dp"
+        android:dropDownWidth="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/TagDB"
+        app:layout_constraintEnd_toEndOf="@+id/TagDB" />
 
     <ScrollView
 
         android:id="@+id/scrollView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/helpcontent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/writing"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="140dp"
-            android:text="Check"
-            android:textSize="14sp" />
+            android:paddingLeft="30dp"
+            android:paddingTop="0dp"
+            android:paddingRight="120dp"
+            android:paddingBottom="0dp"
+            android:text="Enter here"
+            android:textSize="12sp" />
 
     </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tagnotification"
         android:layout_width="198dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="14dp"
         android:text="Notification will appear here"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toEndOf="@+id/TagDB"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contentstatus" />
+        app:layout_constraintTop_toBottomOf="@+id/testdb" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
