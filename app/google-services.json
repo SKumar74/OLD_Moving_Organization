@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "70544871042",
+    "firebase_url": "https://moving-organization.firebaseio.com",
+    "project_id": "moving-organization",
+    "storage_bucket": "moving-organization.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70544871042:android:f2abee67708cbed6b96e9b",
+        "android_client_info": {
+          "package_name": "com.example.moving_organization"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70544871042-282kta1m1ju4eksbsb4480eksoufu9dn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moving_organization",
+            "certificate_hash": "2c346e9ce059e7e0781e8e15923053b7e7535cc7"
+          }
+        },
+        {
+          "client_id": "70544871042-3j30fnv5rnig7qc9apjv2r5eu2r3i1ot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVTmVquIudSh8BakTmysOAl6d7Si21wuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70544871042-3j30fnv5rnig7qc9apjv2r5eu2r3i1ot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
