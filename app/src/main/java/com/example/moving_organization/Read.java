@@ -39,7 +39,7 @@ public class Read extends AppCompatActivity {
     public static final String AFTER_WRITE = "Tag is empty, kicked back to main menu";
     public static final String read_error = "Tag could not be read, try again!";
 
-    //private NfcAdapter nfcadapter = null;
+    private NfcAdapter nfcadapter = null;
 
 
     @Override
@@ -199,6 +199,17 @@ public class Read extends AppCompatActivity {
     }
 
 
+
+
+
+
+        @Override
+        public void onResume()
+        {
+            super.onResume();
+            PendingIntent pIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+            //nfcAdapter.enableForegroundDispatch(this,pIntent,null,null);
+        }
 
 
 

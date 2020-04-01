@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moving_organization.objects.MoverTag;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -62,6 +64,7 @@ public class Write extends AppCompatActivity{
 
             DatabaseReference dbref;
             //FirebaseDatabase firebasedb;
+            FirebaseUser curr_user;
 
             private String dbtagformat;
 
@@ -89,8 +92,7 @@ public class Write extends AppCompatActivity{
                 testdatabase = (Button) findViewById(R.id.testdb);
 
 
-
-
+                curr_user = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -240,6 +242,30 @@ public class Write extends AppCompatActivity{
             // Make this global (add to constructor)
 
 
+
+            // 03/24 UPDATE:
+            // Add checkuser variable here, then set dbref to see that box content gets into same
+            // logged in user
+
+            // UPDATE: 03/27 3:06AM
+            // 90% Done, it works
+            // But UID is used for database entry (a bunch of nonesense instead of actual email
+            // THe structure is correct, but creates another user
+            // Hopefully a small tweak, but need to change check_user
+
+
+            String check_user = curr_user.getUid();
+
+            //Integer increment_box = 1;
+
+            //String to_box = "Box " + increment_box;
+
+            System.out.println("USER RETRIEVED:\n");
+            System.out.println(check_user);
+           // System.out.println("BOX NUMBER RETRIEVED:\n");
+            //System.out.println(increment_box);
+
+
             byte[] tid = myTag.getId();
 
             //String tagidnum = tid.toString();
@@ -253,7 +279,14 @@ public class Write extends AppCompatActivity{
 
             MoverTag mTag = new MoverTag(Instruction,Content,Location);
 
-            dbref.child(locationid).setValue(mTag);
+
+            // 03/27: Test line below, follows working structure as SignIn page
+
+        dbref.child("Users").child(check_user).child("Boxes").child(locationid).push().setValue(mTag);
+
+            //dbref.child(to_box).setValue(mTag);
+
+            //increment_box +=1;
 
 
 
