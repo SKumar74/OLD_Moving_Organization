@@ -18,15 +18,8 @@
 
         <activity android:name=".ViewDatabase" />
         <activity android:name=".Firebase" />
-        <activity android:name=".Read" />
-        <activity android:name=".Write" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SignIn">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Read">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
@@ -38,6 +31,17 @@
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
+
+        </activity>
+        <activity android:name=".Write" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SignIn">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 

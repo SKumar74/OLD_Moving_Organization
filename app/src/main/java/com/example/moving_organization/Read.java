@@ -31,6 +31,12 @@ public class Read extends AppCompatActivity {
     Tag readfromtag;
     PendingIntent pIntent;
 
+    //04/03/2020
+    // Testing Intent Filter
+
+    // Problem stemming from enableforeground code
+    // Continue to look into it tomorrow
+
     // Testing with another read method
     String tagInfo;
 
@@ -208,7 +214,7 @@ public class Read extends AppCompatActivity {
         {
             super.onResume();
             PendingIntent pIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-            //nfcAdapter.enableForegroundDispatch(this,pIntent,null,null);
+            nfcadapter.enableForegroundDispatch(this,pIntent,null,null);
         }
 
 

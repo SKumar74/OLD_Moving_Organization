@@ -39,6 +39,8 @@ public class SignIn extends AppCompatActivity {
     // To test
     FirebaseUser signincheck;
 
+    //FirebaseAuth.AuthStateListener UserAuth;
+
     Button loginuser;
     Button createuser;
 
@@ -59,7 +61,7 @@ public class SignIn extends AppCompatActivity {
         createuser = (Button) findViewById(R.id.createaccountbutton);
         loginerror = (TextView) findViewById(R.id.loginerrortext);
 
-        login = FirebaseAuth.getInstance();
+
 
 
 
@@ -179,10 +181,12 @@ public class SignIn extends AppCompatActivity {
     private void loginauth(final String username, final String password)
     {
 
-        //UPDATE: WORKS
-        // Need to add name field to screen and change ref and into add to db function
-        dbref = FirebaseDatabase.getInstance().getReference("Users");
 
+
+
+        login = FirebaseAuth.getInstance();
+
+        dbref = FirebaseDatabase.getInstance().getReference("Users");
 
 
 
@@ -190,7 +194,47 @@ public class SignIn extends AppCompatActivity {
 
         final UserAccount ua = new UserAccount(username,password);
 
+
+        login.signInWithEmailAndPassword(username,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful())
+                {
+                    final String curruser_ID = signincheck.getUid();
+
+                    System.out.println("EMAIL RETREIVED:\n");
+                    System.out.println(ua.getUsername());
+                    System.out.println("PASSWORD RETREIVED\n");
+                    System.out.println(ua.getPassword());
+
+                    signincheck = login.getCurrentUser();
+
+                    System.out.println("ACCOUNT JUST LOGGED IN:\n");
+                    System.out.println(curruser_ID);
+                    tomainmenu();
+
+
+
+                }
+                else
+                    {
+                        loginerror.setText("Wrong Email or Password Inputted!");
+                    }
+
+                }
+
+
+        });
+
+
+
+
+        /*
+        final UserAccount ua = new UserAccount(username,password);
+
         // Might replace with login.signinwithemailandPassword
+
+
 
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -198,15 +242,16 @@ public class SignIn extends AppCompatActivity {
 
             //UserAccount ua = dataSnapshot.getValue(UserAccount.class);
 
+
+
                 String curruser_email = "";
 
+                signincheck = FirebaseAuth.getInstance().getCurrentUser();
+                curruser_email = signincheck.getEmail();
 
 
-                /*if (signincheck != null)
-                {
-                    accUID = signincheck.getUid();
-                }
-                */
+
+
 
 
                 System.out.println("EMAIL RETREIVED:\n");
@@ -217,8 +262,7 @@ public class SignIn extends AppCompatActivity {
 
                 if (ua.getUsername().equals(username) && ua.getPassword().equals(password))
                 {
-                    signincheck = FirebaseAuth.getInstance().getCurrentUser();
-                    curruser_email = signincheck.getEmail();
+
                     System.out.println("ACCOUNT JUST LOGGED IN:\n");
                     System.out.println(curruser_email);
                     tomainmenu();
@@ -241,7 +285,7 @@ public class SignIn extends AppCompatActivity {
         });
 
 
-
+        */
     }
 
 
