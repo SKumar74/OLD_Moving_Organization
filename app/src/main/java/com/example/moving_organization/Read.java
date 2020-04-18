@@ -45,7 +45,7 @@ public class Read extends AppCompatActivity {
     public static final String AFTER_WRITE = "Tag is empty, kicked back to main menu";
     public static final String read_error = "Tag could not be read, try again!";
 
-    private NfcAdapter nfcadapter = null;
+    private NfcAdapter nfcadapter;
 
 
     @Override
@@ -60,6 +60,8 @@ public class Read extends AppCompatActivity {
 
         rtomain = (Button) findViewById(R.id.readtomain);
 
+
+        nfcadapter = NfcAdapter.getDefaultAdapter(this);
 
 
         System.out.println("ACTION: INTENT "+ getIntent().getAction());
@@ -99,9 +101,20 @@ public class Read extends AppCompatActivity {
     //////////  Functions
 
     // Also testing with new method 02/24
+
+    // Update, read screen works now!
+    //Issues:
+    // 1. Some text gets cut off from tag in view (need to
+    // update function and spacing to make it look better and get entire message)
+    // 2. Reading additional tag doesn't remove inital one (might be as
+    // simple as setting textview to blank in new intent)
+    //
     @Override
     protected void onNewIntent(Intent intent)
     {
+        super.onNewIntent(intent);
+
+        //readtag.setText(" ");
 
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
 

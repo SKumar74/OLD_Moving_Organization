@@ -10,53 +10,49 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="67dp"
         android:text="App Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintBottom_toTopOf="@+id/Readbutton"
+        app:layout_constraintStart_toStartOf="@+id/Readbutton" />
 
     <Button
         android:id="@+id/Readbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="73dp"
         android:text="Read"
         app:layout_constraintBottom_toTopOf="@+id/Writebutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/Writebutton" />
 
     <Button
         android:id="@+id/Writebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="51dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="55dp"
         android:text="Write"
         app:layout_constraintBottom_toTopOf="@+id/VDB"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.391"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Readbutton" />
+        app:layout_constraintStart_toStartOf="@+id/VDB" />
 
     <Button
         android:id="@+id/VDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="209dp"
+        android:layout_marginStart="121dp"
+        android:layout_marginBottom="226dp"
         android:text="View Database"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Signout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Sign Out"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.664"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Writebutton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

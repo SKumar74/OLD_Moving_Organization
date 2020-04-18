@@ -64,7 +64,7 @@ public class Write extends AppCompatActivity{
 
             DatabaseReference dbref;
             //FirebaseDatabase firebasedb;
-            FirebaseUser curr_user;
+            //FirebaseUser curr_user;
 
             private String dbtagformat;
 
@@ -92,7 +92,7 @@ public class Write extends AppCompatActivity{
                 testdatabase = (Button) findViewById(R.id.testdb);
 
 
-                curr_user = FirebaseAuth.getInstance().getCurrentUser();
+                //curr_user = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -254,14 +254,21 @@ public class Write extends AppCompatActivity{
             // Hopefully a small tweak, but need to change check_user
 
 
-            String check_user = curr_user.getUid();
+            String check_user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            String check_user1 = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+            System.out.println("PRINTING UID");
+            System.out.println(check_user);
+            System.out.println("PRINTING USER EMAIL");
+            System.out.println(check_user1);
 
             //Integer increment_box = 1;
 
             //String to_box = "Box " + increment_box;
 
-            System.out.println("USER RETRIEVED:\n");
-            System.out.println(check_user);
+            //System.out.println("USER RETRIEVED:\n");
+            //System.out.println(check_user);
            // System.out.println("BOX NUMBER RETRIEVED:\n");
             //System.out.println(increment_box);
 

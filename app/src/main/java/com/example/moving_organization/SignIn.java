@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.health.UidHealthStats;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -61,6 +62,25 @@ public class SignIn extends AppCompatActivity {
         createuser = (Button) findViewById(R.id.createaccountbutton);
         loginerror = (TextView) findViewById(R.id.loginerrortext);
 
+        login = FirebaseAuth.getInstance();
+
+
+
+
+
+        /*
+        signincheck = login.getCurrentUser();
+
+        final String curruser_ID = signincheck.getUid();
+
+
+
+        System.out.println("ACCOUNT JUST LOGGED IN:\n");
+        System.out.println(curruser_ID);
+
+         */
+
+        // Check for Firebase User here
 
 
 
@@ -134,6 +154,7 @@ public class SignIn extends AppCompatActivity {
                             // Update for 03/27: Was thinking too complex, just needed to make series of child nodes
                             // and check database to see if the structure works with user account creation
                             // so the two lines below are structured fine
+
                             dbref.child("Users").push().setValue(useracc.getUsername().replace(".","-"));
                             dbref.child("Users").child(useracc.getUsername().replace(".","-")).child("Password").push().setValue(useracc.getPassword());
 
@@ -181,25 +202,22 @@ public class SignIn extends AppCompatActivity {
     private void loginauth(final String username, final String password)
     {
 
-
-
-
         login = FirebaseAuth.getInstance();
 
-        dbref = FirebaseDatabase.getInstance().getReference("Users");
-
-
-
-
+        // dbref = FirebaseDatabase.getInstance().getReference("Users");
 
         final UserAccount ua = new UserAccount(username,password);
 
 
         login.signInWithEmailAndPassword(username,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful())
                 {
+                    signincheck = login.getCurrentUser();
+
                     final String curruser_ID = signincheck.getUid();
 
                     System.out.println("EMAIL RETREIVED:\n");
@@ -207,13 +225,13 @@ public class SignIn extends AppCompatActivity {
                     System.out.println("PASSWORD RETREIVED\n");
                     System.out.println(ua.getPassword());
 
-                    signincheck = login.getCurrentUser();
-
                     System.out.println("ACCOUNT JUST LOGGED IN:\n");
                     System.out.println(curruser_ID);
+
+                    // Issue might be "changing activity before onComplete ends.
+                    // If you are changing activity (for example go to Dashboard activity after signing success),
+                    // make sure to call startActivity(intent) inside onComplete task Successful)
                     tomainmenu();
-
-
 
                 }
                 else
@@ -224,34 +242,21 @@ public class SignIn extends AppCompatActivity {
                 }
 
 
-        });
+
+        }
+
+
+        );
 
 
 
 
         /*
-        final UserAccount ua = new UserAccount(username,password);
-
-        // Might replace with login.signinwithemailandPassword
-
-
-
         dbref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
             //UserAccount ua = dataSnapshot.getValue(UserAccount.class);
-
-
-
-                String curruser_email = "";
-
-                signincheck = FirebaseAuth.getInstance().getCurrentUser();
-                curruser_email = signincheck.getEmail();
-
-
-
-
 
 
                 System.out.println("EMAIL RETREIVED:\n");
@@ -263,8 +268,6 @@ public class SignIn extends AppCompatActivity {
                 if (ua.getUsername().equals(username) && ua.getPassword().equals(password))
                 {
 
-                    System.out.println("ACCOUNT JUST LOGGED IN:\n");
-                    System.out.println(curruser_email);
                     tomainmenu();
                 }
                 else
@@ -282,8 +285,12 @@ public class SignIn extends AppCompatActivity {
 
 
             }
-        });
 
+
+
+
+
+        });
 
         */
     }
@@ -294,6 +301,17 @@ public class SignIn extends AppCompatActivity {
         intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+
+
+    /*
+    private void updateUI(FirebaseUser verify)
+    {
+
+    }
+
+    */
+
 
 
     /*
