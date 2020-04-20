@@ -8,24 +8,14 @@
 
 
     <Button
-        android:id="@+id/checkdb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="17dp"
-        android:text="Check Database"
-        app:layout_constraintBaseline_toBaselineOf="@+id/readtomain"
-        app:layout_constraintEnd_toStartOf="@+id/readtomain"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/readtomain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="175dp"
+        android:layout_marginBottom="172dp"
         android:text="return to main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/checkdb" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
 

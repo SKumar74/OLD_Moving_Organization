@@ -9,29 +9,29 @@ import android.widget.Button;
 
 public class ViewDatabase extends AppCompatActivity {
 
-    Button backtomain;
-    Button viewdb;
+        Button backtomain;
+        Button viewdb;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_database);
-
-
-
-        backtomain = (Button) findViewById(R.id.dbtomain);
-        viewdb = (Button) findViewById(R.id.checkdatabase);
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_view_database);
 
 
-        backtomain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ViewDatabase.this, MainActivity.class));
+
+            backtomain = (Button) findViewById(R.id.dbtomain);
+            viewdb = (Button) findViewById(R.id.checkdatabase);
+
+
+            backtomain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(ViewDatabase.this, MainActivity.class));
+                }
+            });
+
+
             }
-        });
-
-
-        }
 
 
 

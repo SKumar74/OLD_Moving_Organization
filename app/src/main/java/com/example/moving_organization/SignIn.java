@@ -33,318 +33,168 @@ import static android.widget.Toast.LENGTH_LONG;
 public class SignIn extends AppCompatActivity {
 
 
-    private FirebaseAuth login;
-    private DatabaseReference dbref;
-
-
-    // To test
-    FirebaseUser signincheck;
-
-    //FirebaseAuth.AuthStateListener UserAuth;
-
-    Button loginuser;
-    Button createuser;
-
-    TextView uemail;
-    TextView upassword;
-    TextView loginerror;
-
-    Intent intent;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-
-        uemail = (TextView) findViewById(R.id.enteremail);
-        upassword = (TextView) findViewById(R.id.enterpassword);
-        loginuser = (Button) findViewById(R.id.loginbutton);
-        createuser = (Button) findViewById(R.id.createaccountbutton);
-        loginerror = (TextView) findViewById(R.id.loginerrortext);
-
-        login = FirebaseAuth.getInstance();
+        private FirebaseAuth login;
+        private DatabaseReference dbref;
 
 
 
+        FirebaseUser signincheck;
+
+        Button loginuser;
+        Button createuser;
+
+        TextView uemail;
+        TextView upassword;
+        TextView loginerror;
+
+        Intent intent;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_sign_in);
+
+            uemail = (TextView) findViewById(R.id.enteremail);
+            upassword = (TextView) findViewById(R.id.enterpassword);
+            loginuser = (Button) findViewById(R.id.loginbutton);
+            createuser = (Button) findViewById(R.id.createaccountbutton);
+            loginerror = (TextView) findViewById(R.id.loginerrortext);
+
+            login = FirebaseAuth.getInstance();
 
 
-        /*
-        signincheck = login.getCurrentUser();
 
-        final String curruser_ID = signincheck.getUid();
+            loginuser.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View v) {
 
+                                                  loginauth(uemail.getText().toString().replace(".","-"),upassword.getText().toString());
 
+                                              }
 
-        System.out.println("ACCOUNT JUST LOGGED IN:\n");
-        System.out.println(curruser_ID);
-
-         */
-
-        // Check for Firebase User here
+            }
+            );
 
 
+            // Testing for database (Note: when testing this, disable email auth from firebase)
+            createuser.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View v) {
+                                                  //createaccounttodb(uemail.getText().toString(),upassword.getText().toString());
+                                                  createacc(uemail.getText().toString(),upassword.getText().toString());
+
+                                              }
+            }
+            );
 
 
-
-
-
-        //Update: Database and create account work
-        // Check database login and try to login to main menu
-        // ONCE DATABASE DONE, RE_ENABLE AUTH ON FIREBASE AND TEST TO SEE IF LOGIN BUTTON TAKES USER TO MAIN MENU
-
-        // Testing email creation, if success, then jumps to main menu
-        loginuser.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              //createacc(uemail.getText().toString(),upassword.getText().toString());
-
-                                              //NOTE 03/06/2020 3:55 AM
-                                              // Test out loginauth function
-                                              // If works, then change hardcode to some other method
-                                              // Test out task with create user button
-                                              // Should only display correct or wrong text, not both
-                                              // If both functions work, work on read intent problem
-
-                                              loginauth(uemail.getText().toString(),upassword.getText().toString());
-
-                                          }
 
         }
-        );
 
 
-        // Testing for database (Note: when testing this, disable email auth from firebase)
-        createuser.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              //createaccounttodb(uemail.getText().toString(),upassword.getText().toString());
-                                              createacc(uemail.getText().toString(),upassword.getText().toString());
 
-                                          }
+        public void createacc(final String email, final String password)
+        {
+            dbref = FirebaseDatabase.getInstance().getReference();
+
+            final UserAccount useracc = new UserAccount(email,password);
+
+
+            System.out.println("EMAIL RETREIVED:\n");
+            System.out.println(useracc.getUsername());
+            System.out.println("PASSWORD RETREIVED\n");
+            System.out.println(useracc.getPassword());
+
+
+            login.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(SignIn.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // If sign-in is complete, send to main menu
+                            if (task.isSuccessful()) {
+
+
+                                dbref.child("Users").push().setValue(useracc.getUsername().replace(".","-"));
+                                dbref.child("Users").child(useracc.getUsername().replace(".","-")).child("Password").push().setValue(useracc.getPassword());
+
+
+
+                                loginerror.setText("Account created successfully!");
+
+                            }
+
+                            else{
+                                loginerror.setText("Failed to fill-out fields.");
+                            }
+                        }
+                    });
+
+
+
+
         }
-        );
-
-
-
-    }
-
-
-
-    public void createacc(final String email, final String password)
-    {
-        dbref = FirebaseDatabase.getInstance().getReference();
-
-        final UserAccount useracc = new UserAccount(email,password);
-
-
-        System.out.println("EMAIL RETREIVED:\n");
-        System.out.println(useracc.getUsername());
-        System.out.println("PASSWORD RETREIVED\n");
-        System.out.println(useracc.getPassword());
-
-
-        login.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(SignIn.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign-in is complete, send to main menu
-                        if (task.isSuccessful()) {
-                            // Should store email for User and password for Password field
-                            // Update for 03/26: Look into storing documents into collection, previous attempts
-                            // Update for 03/27: Was thinking too complex, just needed to make series of child nodes
-                            // and check database to see if the structure works with user account creation
-                            // so the two lines below are structured fine
-
-                            dbref.child("Users").push().setValue(useracc.getUsername().replace(".","-"));
-                            dbref.child("Users").child(useracc.getUsername().replace(".","-")).child("Password").push().setValue(useracc.getPassword());
-
-
-
-                            loginerror.setText("Account created successfully!");
-
-                        }
-
-                        else{
-                            loginerror.setText("Failed to fill-out fields.");
-                        }
-                    }
-                });
 
 
 
 
-    }
+        private void loginauth(final String username, final String password)
+        {
+
+            //login = FirebaseAuth.getInstance();
+
+            dbref = FirebaseDatabase.getInstance().getReference();
 
 
 
-
-    /*
-    private void createaccounttodb(String username, String password)
-    {
+            final UserAccount ua = new UserAccount(username,password);
 
 
+            dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        dbref = FirebaseDatabase.getInstance().getReference();
-
-
-        UserAccount ua = new UserAccount(username,password);
-
-        dbref.child("UserAccount2").setValue(ua);
-
-        //loginerror.setText("Account created successfully!");
-
-    }
-
-     */
-
-
-
-    private void loginauth(final String username, final String password)
-    {
-
-        login = FirebaseAuth.getInstance();
-
-        // dbref = FirebaseDatabase.getInstance().getReference("Users");
-
-        final UserAccount ua = new UserAccount(username,password);
-
-
-        login.signInWithEmailAndPassword(username,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful())
-                {
-                    signincheck = login.getCurrentUser();
-
-                    final String curruser_ID = signincheck.getUid();
 
                     System.out.println("EMAIL RETREIVED:\n");
                     System.out.println(ua.getUsername());
                     System.out.println("PASSWORD RETREIVED\n");
                     System.out.println(ua.getPassword());
 
-                    System.out.println("ACCOUNT JUST LOGGED IN:\n");
-                    System.out.println(curruser_ID);
 
-                    // Issue might be "changing activity before onComplete ends.
-                    // If you are changing activity (for example go to Dashboard activity after signing success),
-                    // make sure to call startActivity(intent) inside onComplete task Successful)
-                    tomainmenu();
-
-                }
-                else
+                    if (ua.getUsername().equals(username) && ua.getPassword().equals(password))
                     {
-                        loginerror.setText("Wrong Email or Password Inputted!");
+
+                        tomainmenu();
+                    }
+                    else
+                    {
+
+                        loginerror.setText("Invalid Email or Password entered.");
+                        System.out.println("FAILED TO RETRIEVE DATA");
                     }
 
                 }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+
+                }
+
+
+
+
+            });
 
 
         }
 
 
-        );
-
-
-
-
-        /*
-        dbref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            //UserAccount ua = dataSnapshot.getValue(UserAccount.class);
-
-
-                System.out.println("EMAIL RETREIVED:\n");
-                System.out.println(ua.getUsername());
-                System.out.println("PASSWORD RETREIVED\n");
-                System.out.println(ua.getPassword());
-
-
-                if (ua.getUsername().equals(username) && ua.getPassword().equals(password))
-                {
-
-                    tomainmenu();
-                }
-                else
-                {
-
-                    loginerror.setText("Invalid Email or Password entered.");
-                    System.out.println("FAILED TO RETRIEVE DATA");
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-
-
-            }
-
-
-
-
-
-        });
-
-        */
-    }
-
-
-    private void tomainmenu()
-    {
-        intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-
-
-    /*
-    private void updateUI(FirebaseUser verify)
-    {
-
-    }
-
-    */
-
-
-
-    /*
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-
-        FirebaseUser currUser = login.getCurrentUser();
-
-        //updateUI(currUser);
-    }
-
-
-    private void createlogin(String email, String password)
-    {
-        /*
-        if (!validatelogin())
+        private void tomainmenu()
         {
-            loginerror.setText("Sign In Failed, try again");
-            return;
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
-
-         */
-    }
-
-
-    /*
-    login.createUserWithEmailandPassword(email, password)
-            .addonCompleteListener(this, new OnCompleteListener<AuthResult>())
-
 
 
 }
-*/

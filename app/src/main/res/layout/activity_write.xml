@@ -38,13 +38,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="309dp"
-        android:layout_marginBottom="310dp"
         android:text="Any specific Instructions needed?: "
         android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/enterinstructions"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/enterlocation"
@@ -61,20 +58,25 @@
         android:id="@+id/enterinstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="299dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="299dp"
         android:text="Enter here"
         android:textSize="12dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/helpInstructions"
-        app:layout_constraintStart_toEndOf="@+id/helpInstructions" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/testdb"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
 
     <Button
         android:id="@+id/TagDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="29dp"
         android:layout_marginBottom="121dp"
-        android:text="Write to Tag/Database"
+        android:text="Write to Tag"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -82,8 +84,8 @@
         android:id="@+id/rtomain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="19dp"
         android:text="Return to Main "
         app:layout_constraintBottom_toTopOf="@+id/testdb"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -92,23 +94,11 @@
         android:id="@+id/testdb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="9dp"
-        android:text="Test database write"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="19dp"
+        android:text="Send to Firebase"
         app:layout_constraintStart_toStartOf="@+id/tagnotification"
         app:layout_constraintTop_toBottomOf="@+id/TagDB" />
-
-    <Spinner
-        android:id="@+id/contentstatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-
-
-        android:layout_marginBottom="24dp"
-        android:dropDownWidth="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/TagDB"
-        app:layout_constraintEnd_toEndOf="@+id/TagDB" />
 
     <ScrollView
 
@@ -146,7 +136,7 @@
         android:id="@+id/tagnotification"
         android:layout_width="198dp"
         android:layout_height="26dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"
         android:text="Notification will appear here"
         app:layout_constraintBottom_toBottomOf="parent"
