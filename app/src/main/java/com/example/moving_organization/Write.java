@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Write extends AppCompatActivity{
-
+ //SC:  Errors are usually added in aseparate error file 
                 public static final String ERROR_DETECTED = "No Tag detected";
                 public static final String WRITE_SUCCESS = "Tag written to successfully!";
                 public static final String WRITE_ERROR = "Error writing to tag, get closer to the tag";
